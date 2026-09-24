@@ -5,8 +5,6 @@ import (
 	"time"
 )
 
-// LoginLimiter caps failed code attempts per key (email) within a sliding window,
-// to stop brute-forcing the 1,000,000 possible 6-digit codes.
 type LoginLimiter struct {
 	mu        sync.Mutex
 	max       int
@@ -20,7 +18,6 @@ func NewLoginLimiter(max int, window time.Duration) *LoginLimiter {
 	return &LoginLimiter{max: max, window: window, now: time.Now, failures: map[string][]time.Time{}}
 }
 
-// recent drops expired failures for key. Caller holds mu.
 func (l *LoginLimiter) recent(key string) []time.Time {
 	cutoff := l.now().Add(-l.window)
 	kept := l.failures[key][:0]
@@ -50,8 +47,6 @@ func (l *LoginLimiter) Fail(key string) {
 	l.failures[key] = append(l.recent(key), l.now())
 }
 
-// sweep drops fully expired keys, at most once per window, so memory stays bounded when many
-// different emails fail once and never return. Caller holds mu.
 func (l *LoginLimiter) sweep() {
 	if l.now().Sub(l.lastSweep) < l.window {
 		return

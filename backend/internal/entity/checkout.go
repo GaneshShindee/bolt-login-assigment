@@ -2,7 +2,6 @@ package entity
 
 import "time"
 
-// Address is an Indian shipping address.
 type Address struct {
 	Label   string // "Home", "Work" or a custom name
 	Line1   string // house / flat, street
@@ -21,7 +20,6 @@ type Checkout struct {
 	CreatedAt time.Time
 }
 
-// SavedDetails is a phone + address from a user's earlier order, offered again at checkout.
 type SavedDetails struct {
 	Phone      string
 	Address    Address

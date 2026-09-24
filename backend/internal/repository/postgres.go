@@ -1,4 +1,3 @@
-// Package repository implements the biz repository interfaces on Postgres.
 package repository
 
 import (

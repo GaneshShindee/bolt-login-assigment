@@ -24,7 +24,6 @@ export default function Checkout() {
 
   const form = useForm<CheckoutValues>({
     resolver: zodResolver(checkoutSchema),
-    // Validate on submit, then live as the user fixes fields (no layout shift on blur).
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     defaultValues: EMPTY_FORM,
@@ -39,7 +38,6 @@ export default function Checkout() {
     formState: { errors, isSubmitting },
   } = form
 
-  // Re-renders on every keystroke, which drives the real-time email check.
   const email = useWatch({ control, name: 'email' })
   const label = useWatch({ control, name: 'label' })
   const normalized = normalizeEmail(email)
@@ -47,13 +45,11 @@ export default function Checkout() {
   const recognition = useEmailRecognition(email, !user)
   const delivery = useDeliveryChoice(user, form)
 
-  // Emails for which the user closed the login modal; we don't prompt them again unless they ask.
   const [dismissed, setDismissed] = useState<ReadonlySet<string>>(new Set())
   const showLogin = !user && recognition === 'recognized' && !dismissed.has(normalized)
 
   const [order, setOrder] = useState<Order | null>(null)
 
-  // A logged-in user checks out with their own email (also covers a session restored after refresh).
   useEffect(() => {
     if (user) setValue('email', user.email, { shouldValidate: true })
   }, [user, setValue])
@@ -111,7 +107,6 @@ export default function Checkout() {
             </p>
           )}
 
-          {/* If a hidden field is somehow invalid, reveal the fields so the error is visible. */}
           <form id="checkout-form" onSubmit={handleSubmit(onSubmit, delivery.edit)} noValidate>
             <fieldset>
               <legend>Contact information</legend>
@@ -135,7 +130,6 @@ export default function Checkout() {
                     onLogin={reopenLogin}
                   />
                 </Field>
-                {/* With a saved address selected, the phone is part of its card. */}
                 {delivery.showFields && (
                   <Field label="Mobile number" error={errors.phone?.message}>
                     <input

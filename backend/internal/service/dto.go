@@ -1,5 +1,3 @@
-// Package service is the use-case layer. It defines the API's request/response types,
-// maps them to and from entities, and orchestrates biz calls for each API action.
 package service
 
 import (
@@ -8,7 +6,6 @@ import (
 	"github.com/ganeshshinde/boltapp/backend/internal/entity"
 )
 
-// UserDTO is the public JSON shape of a user; it never includes the code hash.
 type UserDTO struct {
 	ID        int    `json:"id"`
 	Email     string `json:"email"`
@@ -35,7 +32,6 @@ type RecognizeRequest struct {
 	Email string `json:"email"`
 }
 
-// RecognizeResponse intentionally carries no personal data: the user hasn't proved who they are yet.
 type RecognizeResponse struct {
 	Recognized bool `json:"recognized"`
 }

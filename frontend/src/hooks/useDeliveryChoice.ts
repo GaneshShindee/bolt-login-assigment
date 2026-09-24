@@ -13,14 +13,6 @@ const toDelivery = ({ phone, address }: SavedDetails): Delivery => ({ phone, ...
 
 type Form = Pick<UseFormReturn<CheckoutValues>, 'control' | 'getValues' | 'setValue'>
 
-/**
- * Which phone + address the logged-in user is checking out with: one of their saved ones
- * (from previous orders) or a new one they type. Keeps the form fields in sync with the choice.
- *
- * - On login, the most recent saved address is prefilled, unless the user already typed one:
- *   then their input stays selected as "Your new address".
- * - Switching to a saved address keeps the typed one as a draft and restores it on switching back.
- */
 export function useDeliveryChoice(user: User | null, { control, getValues, setValue }: Form) {
   const [saved, setSaved] = useState<{ userId: number; list: SavedDetails[] } | null>(null)
   const [choice, setChoice] = useState<Choice>('new')
@@ -78,7 +70,6 @@ export function useDeliveryChoice(user: User | null, { control, getValues, setVa
     setDraft(null)
   }
 
-  /** Start over after an order; reload, since the address just used is now a saved one. */
   const reload = () => {
     clear()
     setReloadKey((n) => n + 1)
@@ -91,7 +82,6 @@ export function useDeliveryChoice(user: User | null, { control, getValues, setVa
     savedList,
     choice,
     editing,
-    /** With a saved address selected its card shows everything, so the fields stay hidden unless editing. */
     showFields: !usingSaved || editing,
     newAddress:
       choice === 'new' ? { typed: typedLine1.trim() !== '' } : { typed: draftPreview !== undefined, preview: draftPreview },

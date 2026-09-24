@@ -5,7 +5,6 @@ import { AuthContext } from './AuthContext'
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
 
-  // Restore the session after a page refresh.
   useEffect(() => {
     if (!getToken()) return
     api

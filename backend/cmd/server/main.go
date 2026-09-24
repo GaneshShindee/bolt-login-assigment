@@ -19,8 +19,7 @@ import (
 )
 
 const (
-	sessionTTL = 24 * time.Hour
-	// Up to maxFailedLogins wrong codes per email within loginLockout.
+	sessionTTL      = 24 * time.Hour
 	maxFailedLogins = 5
 	loginLockout    = 15 * time.Minute
 	shutdownTimeout = 10 * time.Second
@@ -60,7 +59,6 @@ func main() {
 		WriteTimeout:      10 * time.Second,
 	}
 
-	// Render sends SIGTERM on redeploy: let in-flight requests finish.
 	stop, cancelSignals := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer cancelSignals()
 	shutdownDone := make(chan struct{})

@@ -6,7 +6,6 @@ import (
 	"strings"
 )
 
-// withBody adapts a service call that takes a JSON body: decode, call, then write the result or error.
 func withBody[Req, Resp any](status int, call func(ctx context.Context, token string, req Req) (Resp, error)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req Req
@@ -32,7 +31,6 @@ func respond[Resp any](w http.ResponseWriter, status int, call func() (Resp, err
 	writeJSON(w, status, resp)
 }
 
-// ignoreToken lets a service call that doesn't need a session fit withBody.
 func ignoreToken[Req, Resp any](call func(context.Context, Req) (Resp, error)) func(context.Context, string, Req) (Resp, error) {
 	return func(ctx context.Context, _ string, req Req) (Resp, error) { return call(ctx, req) }
 }

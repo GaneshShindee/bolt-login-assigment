@@ -1,4 +1,3 @@
-// Package auth holds login-code generation, session tokens and brute-force protection.
 package auth
 
 import (

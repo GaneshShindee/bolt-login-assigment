@@ -1,5 +1,3 @@
-// Package handler is the HTTP layer: routing, middleware, JSON and error-to-status mapping.
-// It holds no business rules.
 package handler
 
 import (
@@ -28,7 +26,6 @@ func (s *Server) Routes(allowedOrigins []string) http.Handler {
 	mux.Handle("POST /api/login", withBody(http.StatusOK, ignoreToken(s.users.Login)))
 	mux.Handle("GET /api/me", withoutBody(s.users.Me))
 
-	// The session token is optional here: without one it's a guest order.
 	mux.Handle("POST /api/checkout", withBody(http.StatusCreated, s.checkouts.Checkout))
 	mux.Handle("GET /api/me/saved-details", withoutBody(s.checkouts.SavedDetails))
 

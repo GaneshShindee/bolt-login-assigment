@@ -5,11 +5,8 @@ import type { Choice } from '../hooks/useDeliveryChoice'
 type Props = {
   saved: SavedDetails[]
   selected: Choice
-  /** The selected saved address is open in the form for editing. */
   editing: boolean
-  /** Slim one-line cards, used while the address fields are open below. */
   compact: boolean
-  /** Whether the user has typed a new address, and a short preview of it when it's not selected. */
   newAddress: { typed: boolean; preview?: string }
   onSelect: (choice: Choice) => void
   onEdit: () => void

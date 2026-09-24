@@ -3,7 +3,6 @@ import type { ReactNode } from 'react'
 type Props = {
   label: ReactNode
   error?: string
-  /** The input, plus anything shown under it (e.g. a live status hint). */
   children: ReactNode
 }
 

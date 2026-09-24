@@ -7,8 +7,6 @@ import (
 	"github.com/ganeshshinde/boltapp/backend/internal/entity"
 )
 
-// CheckoutService combines two biz components: identifying the (optional) logged-in user,
-// then recording the order.
 type CheckoutService struct {
 	users     *biz.UserBiz
 	checkouts *biz.CheckoutBiz
@@ -18,8 +16,6 @@ func NewCheckoutService(users *biz.UserBiz, checkouts *biz.CheckoutBiz) *Checkou
 	return &CheckoutService{users: users, checkouts: checkouts}
 }
 
-// Checkout links the order to the user for a valid token; with no token or an expired one it
-// is saved as a guest checkout.
 func (s *CheckoutService) Checkout(ctx context.Context, token string, req CheckoutRequest) (CheckoutResponse, error) {
 	var userID *int
 	if token != "" {

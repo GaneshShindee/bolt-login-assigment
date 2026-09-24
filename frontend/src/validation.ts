@@ -12,7 +12,6 @@ export const LIMITS = {
   code: 6,
 } as const
 
-// Mirrors the API's rule: local@domain.tld, TLD of 2+ letters, no leading/trailing hyphens in labels.
 const EMAIL_RE =
   /^[A-Za-z0-9._%+-]+@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)*\.[A-Za-z]{2,}$/
 const MOBILE_RE = /^[6-9][0-9]{9}$/ // Indian mobile numbers: 10 digits, starting 6–9

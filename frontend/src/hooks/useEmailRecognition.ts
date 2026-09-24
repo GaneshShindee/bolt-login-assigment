@@ -6,14 +6,9 @@ export type Recognition = 'idle' | 'checking' | 'recognized' | 'new' | 'error'
 
 const DEBOUNCE_MS = 400
 
-/**
- * Checks in the background whether `email` belongs to a registered user, once it is well-formed.
- * Requests are debounced while the user types, and stale ones are aborted when the email changes.
- */
 export function useEmailRecognition(email: string, enabled: boolean): Recognition {
   const normalized = normalizeEmail(email)
   const shouldCheck = enabled && isValidEmail(email)
-  // The status is tagged with the email it belongs to, so a result for an old email is never shown.
   const [result, setResult] = useState<{ email: string; status: Recognition } | null>(null)
 
   useEffect(() => {

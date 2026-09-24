@@ -19,8 +19,6 @@ func NewUserBiz(repo UserRepo, tokens *auth.TokenSigner, limiter *auth.LoginLimi
 	return &UserBiz{repo: repo, tokens: tokens, limiter: limiter}
 }
 
-// Register returns the new user and their login code. Only the code's hash is stored,
-// so this is the only time the code is available.
 func (b *UserBiz) Register(ctx context.Context, email, firstName, lastName string) (entity.User, string, error) {
 	u := entity.User{
 		Email:     normalizeEmail(email),

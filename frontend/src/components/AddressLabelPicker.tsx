@@ -6,7 +6,6 @@ const PRESETS = ['Home', 'Work'] as const
 type Props = {
   value: string
   onChange: (label: string) => void
-  /** The text input for a custom label, rendered when "Other" is selected. */
   customInput: ReactNode
   error?: string
 }

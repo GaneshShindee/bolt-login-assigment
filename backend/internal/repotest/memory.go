@@ -1,4 +1,3 @@
-// Package repotest provides in-memory biz repositories, so tests run without Postgres.
 package repotest
 
 import (
@@ -11,7 +10,6 @@ import (
 	"github.com/ganeshshinde/boltapp/backend/internal/entity"
 )
 
-// Users is an in-memory biz.UserRepo. All is exported so tests can inspect it.
 type Users struct {
 	mu  sync.Mutex
 	All []entity.User
@@ -70,7 +68,6 @@ func (r *Checkouts) RecentDetails(_ context.Context, userID, limit int) ([]entit
 	r.mu.Lock()
 	defer r.mu.Unlock()
 	var out []entity.SavedDetails
-	// Newest first; keep the first (most recent) occurrence of each phone + address.
 	for _, c := range slices.Backward(r.All) {
 		if c.UserID == nil || *c.UserID != userID {
 			continue

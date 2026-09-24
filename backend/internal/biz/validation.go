@@ -5,8 +5,7 @@ import (
 	"strings"
 )
 
-// Validation rules and limits. Keep in sync with the frontend schemas in frontend/src/validation.ts
-// and the column sizes in db/migrations.
+// Keep in sync with frontend/src/validation.ts and the column sizes in db/migrations.
 const (
 	maxEmailLen        = 254
 	maxAddressLabelLen = 30

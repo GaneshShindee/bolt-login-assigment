@@ -13,9 +13,6 @@ import (
 
 var ErrBadToken = errors.New("invalid token")
 
-// TokenSigner issues stateless session tokens of the form "<userID>.<expiryUnix>.<hmac>".
-// Tokens are sent as a Bearer header, which avoids third-party-cookie issues when the
-// frontend (Vercel) and API (Render) are on different domains.
 type TokenSigner struct {
 	secret []byte
 	ttl    time.Duration
