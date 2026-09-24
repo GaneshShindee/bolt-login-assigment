@@ -110,6 +110,28 @@ select {
   color: var(--text);
   width: 100%;
 }
+input:not([type='radio']),
+select {
+  height: 37px;
+}
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 34px;
+  background: #fff
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' fill='none' stroke='%23646b7d' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    no-repeat right 12px center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+}
+select:has(option[value='']:checked) {
+  color: #a3a9b8;
+}
+select option {
+  color: var(--text);
+}
 textarea {
   resize: vertical;
 }
@@ -297,6 +319,7 @@ select[aria-invalid='true'] {
   animation: pop 0.18s ease-out;
 }
 .code-input {
+  height: auto;
   font-family: ui-monospace, 'SF Mono', Menlo, monospace;
   font-size: 30px;
   text-align: center;
@@ -319,7 +342,6 @@ select[aria-invalid='true'] {
   }
 }
 
-/* Layout */
 .card.narrow {
   max-width: 520px;
   margin: 0 auto;
@@ -336,7 +358,6 @@ select[aria-invalid='true'] {
   }
 }
 
-/* Form sections */
 fieldset {
   border: none;
   margin: 0;
@@ -381,7 +402,6 @@ textarea::placeholder {
   font-size: 13px;
 }
 
-/* Order summary */
 .summary {
   position: sticky;
   top: 24px;
@@ -448,7 +468,6 @@ textarea::placeholder {
   line-height: 1.4;
 }
 
-/* Receipt */
 .receipt {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -483,7 +502,6 @@ textarea::placeholder {
   color: var(--good);
 }
 
-/* Spinner */
 .spinner {
   display: inline-block;
   width: 11px;
@@ -501,7 +519,6 @@ textarea::placeholder {
   }
 }
 
-/* Address fields */
 .grid-3 {
   display: grid;
   grid-template-columns: 1.2fr 1.2fr 0.8fr;
@@ -517,7 +534,6 @@ textarea::placeholder {
   color: var(--muted);
 }
 
-/* Address label */
 .label-picker {
   display: flex;
   flex-direction: column;
@@ -559,6 +575,7 @@ textarea::placeholder {
   color: var(--primary);
 }
 .chips input {
+  height: auto;
   flex: 1;
   min-width: 140px;
   width: auto;
@@ -566,7 +583,6 @@ textarea::placeholder {
   padding: 6px 12px;
 }
 
-/* Saved delivery details */
 .saved-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -601,7 +617,6 @@ textarea::placeholder {
 .saved-address {
   font-size: 13px;
   line-height: 1.35;
-  /* keep cards short: at most two lines */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -635,7 +650,6 @@ textarea::placeholder {
   margin-bottom: 12px;
 }
 
-/* Checkout header */
 .checkout-head {
   display: flex;
   align-items: center;
@@ -663,7 +677,6 @@ textarea::placeholder {
   font-size: 11px;
 }
 
-/* Compact saved cards (address fields open) */
 .saved-grid.compact .saved-card {
   padding: 6px 10px;
   gap: 1px;
