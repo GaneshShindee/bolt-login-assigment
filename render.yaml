@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: boltapp-api
+    runtime: go
+    rootDir: backend
+    plan: free
+    buildCommand: go build -o app ./cmd/server
+    startCommand: ./app
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        sync: false # paste the Supabase connection string in the Render dashboard
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ALLOWED_ORIGIN
+        sync: false # e.g. https://boltapp.vercel.app
