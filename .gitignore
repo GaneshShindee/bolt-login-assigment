@@ -1,0 +1,18 @@
+# Node
+node_modules/
+dist/
+
+# Env files (never commit secrets)
+.env
+.env.local
+
+# Go
+backend/app
+
+# OS / editor
+.DS_Store
+.vscode/
+
+# Vite cache
+.vite/
+.env.example
